@@ -4,12 +4,12 @@ set -eu
 
 cd "$(dirname "$0")"/..
 
-echo "$HOMEBREW_KEY $PACKAGECLOUD_TOKEN" > /dev/null
-echo "$AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY" > /dev/null
-if [ ! -x dist/upload_linux_packages.sh ]; then
-    echo "Built distribution not found."
-    exit 1
-fi
+#echo "$HOMEBREW_KEY $PACKAGECLOUD_TOKEN" > /dev/null
+#echo "$AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY" > /dev/null
+#if [ ! -x dist/upload_linux_packages.sh ]; then
+    #echo "Built distribution not found."
+    #exit 1
+#fi
 
 docker build \
     --file ci/Dockerfile.releaser \
