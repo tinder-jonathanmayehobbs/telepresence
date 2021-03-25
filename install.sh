@@ -22,7 +22,7 @@ mkdir -p "${DIST}"
 # Build/retrieve executables into dist
 cd "${SRCDIR}"
 python3 packaging/build-telepresence.py "${DIST}/telepresence"
-python3 packaging/build-sshuttle.py "${DIST}/sshuttle-telepresence"
+#python3 packaging/build-sshuttle.py "${DIST}/sshuttle-telepresence"
 
 # Place binaries
 install -d "${BINDIR}"
@@ -30,9 +30,6 @@ install \
     "${DIST}/telepresence" \
     "${BINDIR}"
 install -d "${LIBEXECDIR}"
-install \
-    "${DIST}/sshuttle-telepresence" \
-    "${LIBEXECDIR}"
 
 # Make sure things appear to run
 VERSION=$("${BINDIR}/telepresence" --version)
