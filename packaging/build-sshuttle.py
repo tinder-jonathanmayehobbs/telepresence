@@ -41,7 +41,10 @@ def build_sshuttle(output: Path):
         assert tarball.exists(), str(tarball)
 
         # Set up Pex in a one-off virtualenv
-        check_call(["virtualenv", "-p", "python3", str(build / "venv")])
+        try:
+            check_call(["python3", "-m", "venv", str(build / "venv")])
+        except:
+            check_call(["virtualenv", "-p", "python3", str(build / "venv")])
         check_call([str(build / "venv/bin/pip"), "-q", "install", "pex"])
 
         # Use Pex to build the executable
