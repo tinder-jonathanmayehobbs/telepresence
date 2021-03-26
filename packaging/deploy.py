@@ -144,7 +144,7 @@ def emit_machinery():
 
 def build_executables():
     """Build Telepresence binaries in Docker and copy them to dist"""
-    con = Container("python:3.6-alpine")
+    con = Container("python:3.6-alpine3.8")
     con.execute_sh("apk update -q")
     con.execute_sh("apk add -q git")
     con.execute_sh("mkdir /source")

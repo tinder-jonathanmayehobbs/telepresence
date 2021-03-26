@@ -36,7 +36,7 @@ if os.environ.get("TELEPRESENCE_VERSION") is not None:
     image_version = os.environ["TELEPRESENCE_VERSION"]
     version_override = True
 
-REGISTRY = os.environ.get("TELEPRESENCE_REGISTRY", "datawire")
+REGISTRY = os.environ.get("TELEPRESENCE_REGISTRY", "405753365262.dkr.ecr.us-east-1.amazonaws.com")
 TELEPRESENCE_LOCAL_IMAGE = "{}/telepresence-local:{}".format(
     REGISTRY, image_version
 )

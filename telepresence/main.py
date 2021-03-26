@@ -23,7 +23,6 @@ from telepresence.runner import Runner
 from telepresence.startup import final_checks, set_kube_command
 from telepresence.usage_tracking import call_scout
 
-
 def main():
     """
     Top-level function for Telepresence

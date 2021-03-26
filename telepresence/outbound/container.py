@@ -27,6 +27,20 @@ from telepresence.runner import Runner
 from telepresence.utilities import find_free_port, random_name
 
 
+def auto_mounts(env, docker_command):
+    add_mounts = []
+    add_mounts = os.environ.get('AUTO_MOUNT', ':').split(':')
+
+    mounts = env['TELEPRESENCE_MOUNTS']
+    tel_root = env['TELEPRESENCE_ROOT']
+
+    for mount in mounts.split(':'):
+        for i in add_mounts:
+            if i in mount:
+                dir_name, link_name = os.path.split(mount)
+                link_src = os.path.join(tel_root, mount[1:])
+                docker_command.append("--volume={}:{}".format(link_src, mount))
+
 def make_docker_kill(runner: Runner, name: str) -> Callable[[], None]:
     """Return a function that will kill a named docker container."""
     def kill() -> None:
@@ -241,6 +255,7 @@ def run_docker_command(
             mount_volume = mount_dir
 
         docker_command.append("--volume={}:{}".format(mount_volume, mount_dir))
+        auto_mounts(remote_env, docker_command)
 
     # Don't add --init if the user is doing something with it
     init_args = [
